@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Surprise for Aleeza ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Cormorant Garamond", serif;
+    color: #4f3d45;
+    background: linear-gradient(135deg, #f9f2f4, #eadce2, #f6ecef);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+.background-glow {
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow1 {
+    background: #e7c5d0;
+    top: -100px;
+    left: -100px;
+}
+
+.glow2 {
+    background: #d8cce5;
+    bottom: -100px;
+    right: -100px;
+}
+
+/* PAGES */
+.page {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TEXT */
+h1, h2 {
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    color: #b47c91;
+}
+
+.big-name {
+    font-size: clamp(75px, 15vw, 135px);
+}
+
+.title {
+    font-size: clamp(60px, 12vw, 105px);
+}
+
+.poem-title {
+    font-size: clamp(50px, 9vw, 75px);
+}
+
+.small-text {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #8c737c;
+    margin-bottom: 12px;
+}
+
+.text {
+    font-size: 22px;
+    line-height: 1.7;
+    color: #735e66;
+    max-width: 700px;
+    margin: 12px auto;
+}
+
+.divider {
+    width: 80px;
+    height: 1px;
+    background: #b47c91;
+    margin: 25px auto;
+}
+
+/* CARDS */
+.card {
+    width: min(700px, 95%);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(180, 124, 145, 0.25);
+    border-radius: 28px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(100, 70, 80, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.password-card {
+    width: min(420px, 95%);
+    padding: 32px;
+    background: rgba(255,255,255,0.65);
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(100,70,80,0.15);
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 30px;
+    border: 1px solid #d8b8c2;
+    outline: none;
+    text-align: center;
+    font-size: 17px;
+    font-family: "Dancing Script", cursive;
+    background: white;
+}
+
+#error {
+    min-height: 25px;
+    color: #b15f78;
+    margin-top: 10px;
+}
+
+/* BUTTONS */
+button {
+    padding: 14px 28px;
+    margin: 14px 7px;
+    border-radius: 30px;
+    border: 1px solid #b47c91;
+    background: rgba(255,255,255,0.75);
+    color: #986578;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #b47c91;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(180,124,145,0.3);
+}
+
+/* POETRY MENU */
+.poem-menu {
+    width: min(650px, 95%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.poem-option {
+    padding: 24px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(180,124,145,0.22);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.poem-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(100,70,80,0.12);
+}
+
+.poem-number {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #b47c91;
+}
+
+.poem-option h3 {
+    font-family: "Cormorant Garamond", cursive;
+    font-size: 42px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* POEM */
+.poem-text {
+    font-size: 21px;
+    line-height: 1.9;
+    color: #705d65;
+}
+
+.poem-text p {
+    margin: 15px 0;
+}
+
+/* NAVIGATION */
+.navigation {
+    margin-top: 10px;
+}
+
+/* BUTTERFLIES */
+.butterfly {
+    position: fixed;
+    font-size: 28px;
+    pointer-events: none;
+    z-index: 20;
+    animation: fly 12s linear infinite;
+    opacity: 0;
+}
+
+.b1 { left: 8%; animation-delay: 0s; }
+.b2 { left: 35%; animation-delay: 4s; }
+.b3 { left: 70%; animation-delay: 8s; }
+
+@keyframes fly {
+    0% {
+        top: 105%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    15% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateX(70px) rotate(10deg);
+    }
+    85% {
+        opacity: 0.7;
+    }
+    100% {
+        top: -10%;
+        opacity: 0;
+        transform: translateX(-70px) rotate(-10deg);
+    }
+}
+
+/* SPARKLES */
+.sparkle {
+    position: fixed;
+    color: #b47c91;
+    font-size: 22px;
+    pointer-events: none;
+    z-index: 10;
+    animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+.s1 { top: 12%; left: 10%; }
+.s2 { top: 18%; right: 12%; animation-delay: 0.5s; }
+.s3 { top: 55%; left: 7%; animation-delay: 1s; }
+.s4 { top: 70%; right: 8%; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.5) rotate(90deg);
+    }
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 15px;
+    z-index: 1000;
+    pointer-events: none;
+    animation: fall 4s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .card {
+        padding: 30px 20px;
+    }
+
+    .text {
+        font-size: 19px;
+    }
+
+    .poem-text {
+        font-size: 18px;
+    }
+
+    button {
+        display: block;
+        width: 90%;
+        margin: 12px auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow glow1"></div>
+<div class="background-glow glow2"></div>
+
+<!-- PASSWORD PAGE -->
+<section class="page active" id="lock-page">
+    <p class="small-text">a secret little corner of the internet</p>
+
+    <h1 class="big-name">Aleeza</h1>
+
+    <p class="text">A little surprise, made especially for you ♡</p>
+
+    <div class="password-card">
+        <p style="font-size: 24px;">♡ 🔐 ♡</p>
+
+        <br>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter the secret password"
+            autocomplete="off"
+        >
+
+        <button id="unlock-button">Unlock Your Surprise ✨</button>
+
+        <p id="error"></p>
+    </div>
+</section>
+
+
+<!-- WELCOME PAGE -->
+<section class="page" id="welcome-page">
+    <p class="small-text">for someone very special</p>
+
+    <h1 class="title">Hi Aleeza ♡</h1>
+
+    <div class="divider"></div>
+
+    <p class="text">
+        You just unlocked a little corner of the internet
+        made especially for you.
+    </p>
+
+    <p class="text">
+        You will love it Butter G... ✨
+    </p>
+
+    <button onclick="showPage('poetry-menu')">
+        Enter the Poetry Corner ♡
+    </button>
+
+    
+</section>
+
+
+
+<!-- POETRY MENU -->
+<section class="page" id="poetry-menu">
+    <p class="small-text">a few words for you</p>
+
+    <h1 class="title">Poetry Corner</h1>
+
+    <p class="text">Some things are easier to say through poetry...</p>
+
+    <div class="poem-menu">
+
+        <div class="poem-option" onclick="showPage('poem1')">
+            <div class="poem-number">01</div>
+            <h3>My Love</h3>
+        </div>
+
+        <div class="poem-option" onclick="showPage('poem2')">
+            <div class="poem-number">02</div>
+            <h3>You and I</h3>
+        </div>
+
+        <div class="poem-option" onclick="showPage('poem3')">
+            <div class="poem-number">03</div>
+            <h3>My Butterfly</h3>
+        </div>
+
+    </div>
+
+    <button onclick="showPage('welcome-page')">← Back</button>
+</section>
+
+
+<!-- POEM 1 -->
+<section class="page" id="poem1">
+
+    <div class="card">
+
+        <div class="poem-number">01</div>
+
+        <!-- CHANGE TITLE HERE -->
+        <h2 class="poem-title">My Love</h2>
+
+        <div class="divider"></div>
+
+        <div class="poem-text">
+
+            <!-- ✨ ADD YOUR POEM 1 BELOW ✨ -->
+
+            <p>The more i understood her ,
+The more beautiful she came out.
+My piyari butter who talks a lott , but won't utter a word about her feelings. 
+She won't even let you know, will just give hints , it's upto you if you get it or not.
+She loves using her mind , loves things that makes her mind work, loves deep conversations and is good at questioning.
+I may have never met her but through screen only she feels my own being .
+Thinking about her makes me excited.
+Maybe in the starting i couldn't fully understand her but it's so beautiful to know her like this. I'll always have one regret that I'm not one of her local friends,maybe then i could understand her better ,maybe then we could talk about things face to face , maybe then we could even hug. She expresses herself in levels or all at once . Mostly i feel i disappointed her , once she said she gets bored because I don't play mind games , I guess that's trueee, I'm just a boring friend , I don't bring anything in a friendship.
+She loves telling things but only if she knows that the other one is willing to listen.
+One thing is so cuteeee about herrr that she doesn't say I love you like that's so adorable but ofc i know she does.
+One more thing I admire about her is that she gives you what you give her like a reflection, so it's ur part to work on, and I love working on . I have never expressed myself this simply to anyone before like I'm totally different with her I can't even control being different, the personality i show to her is my real one , others never met that. One fear will always remain that what if I disappoint her .
+Meri Punjabi kudi bold , expressive at everything but not when it comes to the topic of Aleeza. 
+Kitna kuchh bolti hai but apne liye kuchh bhi nhi bolti.
+She's expressive with me about all the other thingssssss. Happy soul carrying everything within her , literally everything.
+She thinks that I don't know herrr that's not totally truee , I know you my butter jan i just don't show the only thing I know is if I were given a chance to be with you in real I'd have known you better and more .</p>
+
+            <!-- ✨ POEM 1 ENDS HERE ✨ -->
+
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button onclick="showPage('poetry-menu')">← Poetry Menu</button>
+        <button onclick="showPage('poem2')">Next Poem →</button>
+    </div>
+
+</section>
+
+
+<!-- POEM 2 -->
+<section class="page" id="poem2">
+
+    <div class="card">
+
+        <div class="poem-number">02</div>
+
+        <!-- CHANGE TITLE HERE -->
+        <h2 class="poem-title">My Love</h2>
+
+        <div class="divider"></div>
+
+        <div class="poem-text">
+
+            <!-- ✨ ADD YOUR POEM 2 BELOW ✨ -->
+
+            <p>The queen of butterflies 
+With pretty face and sparkling eyes
+
+So good at noticing 
+Even the smallest things u are feeling
+
+Quiet and calming
+But her presence is forever charming
+ 
+Reads literally everything 
+Whether it's funny , exciting or boring 
+
+Can't mess with her 
+She has that Aura that u fear 
+
+Is smart , is kind 
+The one who'll definitely own your mind 
+
+understands and care
+The kind of soul that's extremely rare
+
+Lives miles away 
+But I know will lifetime stay
+
+Gives good advices 
+Like she knows all the right choices
+
+Can read 1000 pages a day 
+But the one who can never betray 
+
+who has all my trust
+Infront of her, everyone else is like dust
+
+Says point every time
+If anyone else says , it's a crime 
+
+Loves books , art and guns 
+Is like a mom to her loved ones 
+
+My heart-occupier
+My butter you are fire
+
+Only one who has shown me how a true person loves
+One who understands me like no one else does
+
+Can make me smile, can make me blush
+Knows how to colour my life like a paint brush
+
+Tells me my mistake
+Every time proves me, she is not fake
+
+Brights up my day
+The one for whom I will forever pray
+
+Only regret is the distance
+But I can find her in my heart at any instance
+
+My dearest butter 
+Only you know how to make my heart flutter
+
+I hope you know how dear you are to me
+If I were a jelly fish, you would be my sea
+
+
+
+
+
+
+
+
+♡</p>
+
+            <!-- ✨ POEM 2 ENDS HERE ✨ -->
+
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button onclick="showPage('poem1')">← Previous</button>
+        <button onclick="showPage('poem3')">Next Poem →</button>
+    </div>
+
+</section>
+
+
+<!-- POEM 3 -->
+<section class="page" id="poem3">
+
+    <div class="card">
+
+        <div class="poem-number">03</div>
+
+        <!-- CHANGE TITLE HERE -->
+        <h2 class="poem-title">My Love</h2>
+
+        <div class="divider"></div>
+
+        <div class="poem-text">
+
+            <!-- ✨ ADD YOUR POEM 3 BELOW ✨ -->
+
+            <p>Write your first line here.</p>
+            <p>Write your second line here.</p>
+            <p>Write your third line here.</p>
+            <p>Write as many lines as you want. ♡</p>
+
+            <!-- ✨ POEM 3 ENDS HERE ✨ -->
+
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button onclick="showPage('poem2')">← Previous</button>
+        <button onclick="showPage('final-page')">One Last Surprise ✨</button>
+    </div>
+
+</section>
+
+
+<!-- FINAL BIRTHDAY PAGE -->
+<section class="page" id="final-page">
+
+    <p class="small-text">and finally...</p>
+
+    <h1 class="title">Happy Birthday, Aleeza! ♡</h1>
+
+    <div class="divider"></div>
+
+    <p class="text">
+        I hope this little corner of the internet
+        made you smile.
+    </p>
+
+    <p class="text">
+        May your year be filled with happiness,
+        laughter, beautiful memories and everything
+        your heart wishes for. 🌸
+    </p>
+
+    <button onclick="celebrate()">Make It Rain Confetti 🎉</button>
+
+    <button onclick="showPage('welcome-page')">♡ Start Again</button>
+
+</section>
+
+
+<!-- FLOATING BUTTERFLIES -->
+<div class="butterfly b1">🦋</div>
+<div class="butterfly b2">🦋</div>
+<div class="butterfly b3">🦋</div>
+
+
+<!-- SPARKLES -->
+<div class="sparkle s1">✦</div>
+<div class="sparkle s2">✧</div>
+<div class="sparkle s3">✦</div>
+<div class="sparkle s4">✧</div>
+
+
+<script>
+
+/* PAGE SWITCHING */
+function showPage(pageId) {
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    const selectedPage = document.getElementById(pageId);
+
+    if (selectedPage) {
+        selectedPage.classList.add("active");
+        window.scrollTo(0, 0);
+    }
+
+    /* Load game when game page opens */
+    if (pageId === "game-page") {
+        startGame();
+    }
+}
+
+
+/* PASSWORD */
+const passwordInput = document.getElementById("password");
+const unlockButton = document.getElementById("unlock-button");
+const errorMessage = document.getElementById("error");
+
+function unlockWebsite() {
+    const enteredPassword = passwordInput.value
+        .trim()
+        .replace(/\s+/g, " ")
+        .toUpperCase();
+
+    if (enteredPassword === "MY LOVE") {
+        errorMessage.innerText = "";
+        passwordInput.value = "";
+        showPage("welcome-page");
+    } else {
+        errorMessage.innerText = "Wrong password... try again ♡";
+    }
+}
+
+unlockButton.addEventListener("click", unlockWebsite);
+
+passwordInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        unlockWebsite();
+    }
+});
+
+
+/* CONFETTI */
+function celebrate() {
+
+    const colors = [
+        "#b47c91",
+        "#d8b8c2",
+        "#ead7df",
+        "#d9cce6",
+        "#ffffff"
+    ];
+
+    for (let i = 0; i < 120; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left = Math.random() * 100 + "vw";
+
+        piece.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        piece.style.transform =
+            "rotate(" + Math.random() * 360 + "deg)";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function() {
+            piece.remove();
+        }, 5500);
+    }
+}
+
+/* =========================
+   WORD PUZZLE GAME
+========================= */
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
